@@ -75,35 +75,65 @@ detectron = YOLOv3Predictor(params=yolo_params)
 
 #Faster RCNN / RetinaNet / Mask RCNN
 
-
+# The main loop of the mirror that keeps taking pictures and processing them
 while(True):
     detections = []
     while(len(detections) == 0):
         t.sleep(10)
+        # Uses the webcam_take_pic.py module to take a picture and save it as capture.png
         take_pic()
         path = 'capture.png'
+        # Checks if the image taken exists
         if not os.path.exists(path):
             print('Img does not exists..')
             continue
+        # Reads the saved image
+        # Lundh, F. and contributors, Clark A. J. and contributors (2024), ImageOps Module, Pillow (PIL Fork) 10.3.0 documentation, https://pillow.readthedocs.io/en/stable/reference/ImageOps.html, retrieved on April 18, 2024
+        # Lundh, F. and contributors, Clark A. J. and contributors (2024), ImagePalette Module, Pillow (PIL Fork) 10.3.0 documentation, https://pillow.readthedocs.io/en/stable/reference/ImagePalette.html, retrieved on April 18, 2024
+        # Lundh, F. and contributors, Clark A. J. and contributors, (2024) pillow, Python Imaging Library (Fork), version 10.3.0, https://pypi.org/project/pillow/, retrieved on April 18, 2024
+        # Lundh, F. and contributors, Clark A. J. and contributors, (2024) pillow, Python Imaging Library (Fork), version 10.3.0, https://pillow.readthedocs.io/en/stable/, retrieved on April 18, 2024
+        # Lundh, F. and contributors, Clark A. J. and contributors, (2024) PixelAccess Class, Pillow (PIL Fork) 10.3.0 documentation, https://pillow.readthedocs.io/en/stable/reference/PixelAccess.html, retrieved on April 18, 2024
         img = cv2.imread(path)
+        # Gets the detected zones with their coordinates from the image taken
         detections = detectron.get_detections(img)
         print(detections)
+    # Open the image
     with Image.open(path) as im:
+        # Load it as pixels
+        # Lundh, F. and contributors, Clark A. J. and contributors (2024), ImageOps Module, Pillow (PIL Fork) 10.3.0 documentation, https://pillow.readthedocs.io/en/stable/reference/ImageOps.html, retrieved on April 18, 2024
+        # Lundh, F. and contributors, Clark A. J. and contributors (2024), ImagePalette Module, Pillow (PIL Fork) 10.3.0 documentation, https://pillow.readthedocs.io/en/stable/reference/ImagePalette.html, retrieved on April 18, 2024
+        # Lundh, F. and contributors, Clark A. J. and contributors, (2024) pillow, Python Imaging Library (Fork), version 10.3.0, https://pypi.org/project/pillow/, retrieved on April 18, 2024
+        # Lundh, F. and contributors, Clark A. J. and contributors, (2024) pillow, Python Imaging Library (Fork), version 10.3.0, https://pillow.readthedocs.io/en/stable/, retrieved on April 18, 2024
+        # Lundh, F. and contributors, Clark A. J. and contributors, (2024) PixelAccess Class, Pillow (PIL Fork) 10.3.0 documentation, https://pillow.readthedocs.io/en/stable/reference/PixelAccess.html, retrieved on April 18, 2024
         px = im.load()
     names_colors = []
     rgb_colors = []
     clothing_types = list(map (lambda detection: detection[-1], detections))
     print(clothing_types)
+    # Start looping over the detections
+    # For each detected square
     for i in range(len(detections)):
         item_colors = []
+        # Loop over the pixels of the square. Here, an inner square of the detected area is looped over to increase accuracy that the actual clothing
+        # item is looped over rather than the area outside of it included
         for m in range(int(math.ceil(detections[i][0])) + 5, int(math.floor(detections[i][2])) - 5):
             for n in range(int(math.ceil(detections[i][1])) + 5, int(math.floor(detections[i][3])) - 5):
                 try:
+                    # Using the closest_color method of the colortheory module to detect what color the pixel at [m, n] is
+                    # note that closest_color(px[m,n]) returns a list of the form [R, G, B, 'color name']
+                    # Lundh, F. and contributors, Clark A. J. and contributors (2024), ImageOps Module, Pillow (PIL Fork) 10.3.0 documentation, https://pillow.readthedocs.io/en/stable/reference/ImageOps.html, retrieved on April 18, 2024
+                    # Lundh, F. and contributors, Clark A. J. and contributors (2024), ImagePalette Module, Pillow (PIL Fork) 10.3.0 documentation, https://pillow.readthedocs.io/en/stable/reference/ImagePalette.html, retrieved on April 18, 2024
+                    # Lundh, F. and contributors, Clark A. J. and contributors, (2024) pillow, Python Imaging Library (Fork), version 10.3.0, https://pypi.org/project/pillow/, retrieved on April 18, 2024
+                    # Lundh, F. and contributors, Clark A. J. and contributors, (2024) pillow, Python Imaging Library (Fork), version 10.3.0, https://pillow.readthedocs.io/en/stable/, retrieved on April 18, 2024
+                    # Lundh, F. and contributors, Clark A. J. and contributors, (2024) PixelAccess Class, Pillow (PIL Fork) 10.3.0 documentation, https://pillow.readthedocs.io/en/stable/reference/PixelAccess.html, retrieved on April 18, 2024
                     color_detected = closest_color(px[m,n])
+                    # The color is then added to the list of colors of the current item of clothing
                     list.append(item_colors, color_detected)
                 except IndexError:
                     print("There was an error processing your outfit colors, please stand infront of the mirror again")
+        # List containing the item's colors in the form [R, G, B]
         rgb_colors.append([most_common(item_colors)[0], most_common(item_colors)[1], most_common(item_colors)[2]])
+        # List containing the item's colors names
         names_colors.append(most_common(item_colors)[3])
     print(names_colors)
     print(rgb_colors)
@@ -113,10 +143,12 @@ while(True):
     print(f"theme is: {theme}")
     weather_advice = weather_clothing_advice(clothing_types)
     print(weather_advice)
-
+    # If the color_theory function of the color theory module returns true, it means the colors detected look well together and a message
+    # is sent to the mirror
     if color_theory(rgb_colors):
         if theme: send_msg_to_mirror("Outfit Evaluation", f"Your outfit looks good \n Your outfit is in a nice {theme} style! \n {weather_advice}")
         else:     send_msg_to_mirror("Outfit Evaluation", "Your outfit looks good \n {weather_advice}")
+    # Otherwise the suggest_colors method is called and a message is sent to the mirror with the suggested colors
     else:
         suggested_colors = suggest_colors(rgb_colors)
         print(suggested_colors)
@@ -173,3 +205,17 @@ while(True):
     #             img_id = path.split('/')[-1].split('.')[0]
     #             print(cv2.imwrite('output/ouput-test_{}_{}_{}.jpg'.format(img_id,model,dataset),img))
     #             cv2.waitKey(0)
+
+# References
+# Lundh, F. and contributors, Clark A. J. and contributors (2024), ImageOps Module, Pillow (PIL Fork) 10.3.0 documentation, https://pillow.readthedocs.io/en/stable/reference/ImageOps.html, retrieved on April 18, 2024
+# Lundh, F. and contributors, Clark A. J. and contributors (2024), ImagePalette Module, Pillow (PIL Fork) 10.3.0 documentation, https://pillow.readthedocs.io/en/stable/reference/ImagePalette.html, retrieved on April 18, 2024
+# Lundh, F. and contributors, Clark A. J. and contributors, (2024) pillow, Python Imaging Library (Fork), version 10.3.0, https://pypi.org/project/pillow/, retrieved on April 18, 2024
+# Lundh, F. and contributors, Clark A. J. and contributors, (2024) pillow, Python Imaging Library (Fork), version 10.3.0, https://pillow.readthedocs.io/en/stable/, retrieved on April 18, 2024
+# Lundh, F. and contributors, Clark A. J. and contributors, (2024) PixelAccess Class, Pillow (PIL Fork) 10.3.0 documentation, https://pillow.readthedocs.io/en/stable/reference/PixelAccess.html, retrieved on April 18, 2024
+# Python Software Foundation, (2024), Built-in Types, Python 3.12.3 documentation, https://docs.python.org/3/library/stdtypes.html#dict, retrieved on April 19, 2024
+# Python Software Foundation (2024), Compound statements, Python 3.12.3 documentation, https://docs.python.org/3/reference/compound_stmts.html#try, retrieved April 20, 2024
+# Python Software Foundation (2024), Data model, Python 3.12.3 documentation, https://docs.python.org/3/reference/datamodel.html#index-25, retrieved April 10, 2024
+# Python Software Foundation, (2024), Data Structures, Python 3.12.3 documentation, https://docs.python.org/3/tutorial/datastructures.html, retrieved on April 12, 2024
+# Python Software Foundation (2024), Errors and Exceptions, Python 3.12.3 documentation, https://docs.python.org/3/tutorial/errors.html, retrieved April 20, 2024
+# Python Software Foundation, (2024), Python 3.12.3 documentation, Python 3.12.3 documentation, https://docs.python.org/3/, retrieved on April 10, 2024
+# Python Software Foundation, (2024), The import system, Python 3.12.3 documentation, https://docs.python.org/3/reference/import.html, retrieved on April 20, 2024
