@@ -428,4 +428,3 @@ def color_theory(listOfColors):
 # print("Orange, Green, and Leaf Green")
 # print("RGB Values: [255, 171, 0] - Orange, [255, 0, 171] - Fuschia, [0, 255, 174] - Leaf Green")
 # print(color_theory([[255, 171, 0], [213, 0, 255], [0, 81, 255]]))
-# print("-------")
