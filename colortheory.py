@@ -9,7 +9,8 @@ import math
 # The following method converts the RGB values of the form [R, G, B] to HSL values of the form [H, S, L]
 # Chalaris, A. (2020), Hex to RGB, 30 Seconds of Code, https://www.30secondsofcode.org/python/s/hex-to-rgb/, retrieved April 10, 2024
 # Waldman, N. (2013), Math behind colorspace conversions, RGB-HSL, Nikolai Waldman - colorist & editor, https://www.niwa.nu/2013/05/math-behind-colorspace-conversions-rgb-hsl/, retrieved on April 12, 2024
-def rgb_to_hsl(listForm): # https://www.30secondsofcode.org/python/s/hex-to-rgb/ # https://www.niwa.nu/2013/05/math-behind-colorspace-conversions-rgb-hsl/
+# RapidTables RGB Color Codes Chart, RapidTables, https://www.rapidtables.com/web/color/RGB_Color.html#:~:text=RGB%20color%20space%20or%20RGB,*256%3D16777216%20possible%20colors., retrieved April 10, 2024
+def rgb_to_hsl(listForm):
 	red = listForm[0]/255
 	green = listForm[1]/255
 	blue = listForm[2]/255
@@ -41,6 +42,14 @@ def rgb_to_hsl(listForm): # https://www.30secondsofcode.org/python/s/hex-to-rgb/
 def color_difference_formula(color1, color2): # https://www.101computing.net/colour-difference-formula/
 	distance = math.sqrt(((color2[0] - color1[0]))**2 + ((color2[1] - color1[1]))**2 + ((color2[2] - color1[2]))**2)
 	return distance
+# RapidTables Grey Color Code, RapidTables, https://www.rapidtables.com/web/color/gray-color.html, retrieved April 10, 2024 * 
+# RapidTables RGB Color Codes Chart, RapidTables, https://www.rapidtables.com/web/color/RGB_Color.html#:~:text=RGB%20color%20space%20or%20RGB,*256%3D16777216%20possible%20colors., retrieved April 10, 2024 * 
+# RGB Color Picker, Complementary Colors Generator, RGB Color Picker, https://rgbcolorpicker.com/complementary, retrieved April 10, 2024 *
+# sessions college (2008), The Sessions College Color Calculator, sessions college, https://www.sessions.edu/color-calculator/, retrieved April 12, 2024
+# Stoumann Mads (2021), Colors are Math: How they match - and how to build a Color Picker, DEV, https://dev.to/madsstoumann/colors-are-math-how-they-match-and-how-to-build-a-color-picker-4ei8, retrieved April 12, 2024
+# W3Schools Color Schemes, W3Schools, https://www.w3schools.com/colors/colors_schemes.asp, retrieved April 10, 2024 *
+# W3Schools Color Theory, W3Schools, https://www.w3schools.com/colors/colors_theory.asp, retrieved April 10, 2024 *
+# W3Schools Color Wheels, W3Schools, https://www.w3schools.com/colors/colors_wheels.asp, retrieved April 10, 2024 *
 def closest_color(color):
     dark_yellow = [163, 181, 0, 'dark yellow']
     yellow = [255, 255, 0, 'yellow']
@@ -83,6 +92,8 @@ def closest_color(color):
     		minimum = color_difference_formula(i, color)
     return min_color
 # The following code relies on the references below to apply color theory rules on the given colors
+# RapidTables Grey Color Code, RapidTables, https://www.rapidtables.com/web/color/gray-color.html, retrieved April 10, 2024 * 
+# RapidTables RGB Color Codes Chart, RapidTables, https://www.rapidtables.com/web/color/RGB_Color.html#:~:text=RGB%20color%20space%20or%20RGB,*256%3D16777216%20possible%20colors., retrieved April 10, 2024 * 
 # RGB Color Picker, Complementary Colors Generator, RGB Color Picker, https://rgbcolorpicker.com/complementary, retrieved April 10, 2024 *
 # sessions college (2008), The Sessions College Color Calculator, sessions college, https://www.sessions.edu/color-calculator/, retrieved April 12, 2024
 # Stoumann Mads (2021), Colors are Math: How they match - and how to build a Color Picker, DEV, https://dev.to/madsstoumann/colors-are-math-how-they-match-and-how-to-build-a-color-picker-4ei8, retrieved April 12, 2024
@@ -115,6 +126,8 @@ def convert_to_angle(angle):
 	else:
 		return angle
 # The following code relies on the references below to apply color theory rules on the given colors
+# RapidTables Grey Color Code, RapidTables, https://www.rapidtables.com/web/color/gray-color.html, retrieved April 10, 2024 * 
+# RapidTables RGB Color Codes Chart, RapidTables, https://www.rapidtables.com/web/color/RGB_Color.html#:~:text=RGB%20color%20space%20or%20RGB,*256%3D16777216%20possible%20colors., retrieved April 10, 2024 * 
 # RGB Color Picker, Complementary Colors Generator, RGB Color Picker, https://rgbcolorpicker.com/complementary, retrieved April 10, 2024 *
 # sessions college (2008), The Sessions College Color Calculator, sessions college, https://www.sessions.edu/color-calculator/, retrieved April 12, 2024
 # Stoumann Mads (2021), Colors are Math: How they match - and how to build a Color Picker, DEV, https://dev.to/madsstoumann/colors-are-math-how-they-match-and-how-to-build-a-color-picker-4ei8, retrieved April 12, 2024
@@ -132,6 +145,7 @@ def split_complementary(color1, color2, color3):
 	luminance1 = color1[2]
 	luminance2 = color2[2]
 	luminance3 = color3[2]
+	# Comparing the angles
 	if hue2 in range(convert_to_angle(hue1 + 130), convert_to_angle(hue1 + 180)) and hue3 in range(convert_to_angle(hue1 + 180), convert_to_angle(hue1 + 230)):
 		print("Split Complementary Colors")
 		return True
@@ -153,6 +167,8 @@ def split_complementary(color1, color2, color3):
 	else:
 		return False
 # The following code relies on the references below to apply color theory rules on the given colors
+# RapidTables Grey Color Code, RapidTables, https://www.rapidtables.com/web/color/gray-color.html, retrieved April 10, 2024 * 
+# RapidTables RGB Color Codes Chart, RapidTables, https://www.rapidtables.com/web/color/RGB_Color.html#:~:text=RGB%20color%20space%20or%20RGB,*256%3D16777216%20possible%20colors., retrieved April 10, 2024 * 
 # RGB Color Picker, Complementary Colors Generator, RGB Color Picker, https://rgbcolorpicker.com/complementary, retrieved April 10, 2024 *
 # sessions college (2008), The Sessions College Color Calculator, sessions college, https://www.sessions.edu/color-calculator/, retrieved April 12, 2024
 # Stoumann Mads (2021), Colors are Math: How they match - and how to build a Color Picker, DEV, https://dev.to/madsstoumann/colors-are-math-how-they-match-and-how-to-build-a-color-picker-4ei8, retrieved April 12, 2024
@@ -170,6 +186,7 @@ def analogous_colors(colors):
 		color2 = colors[1]
 		hue1 = convert_to_angle(color1[0])
 		hue2 = convert_to_angle(color2[0])
+		# Comparing  the angles
 		if(hue1 in range(hue2 - 31, hue2 + 31)):
 			print("Analogous Colors")
 			return True
@@ -185,6 +202,7 @@ def analogous_colors(colors):
 		hue1 = convert_to_angle(color1[0])
 		hue2 = convert_to_angle(color2[0])
 		hue3 = convert_to_angle(color3[0])
+		# Comparing the angles
 		if(hue2 in range(hue1 - 31, hue1 + 31) and hue3 in range(hue1 - 31, hue1 + 31)):
 			print("Analogous Colors")
 			return True
@@ -205,6 +223,7 @@ def analogous_colors(colors):
 		hue2 = convert_to_angle(color2[0])
 		hue3 = convert_to_angle(color3[0])
 		hue4 = convert_to_angle(color4[0])
+		# Comparing the angles
 		if(hue2 in range(hue1 - 31, hue1 + 31) and hue3 in range(hue1 - 31, hue1 + 31) and hue4 in range(hue1 - 31, hue1 + 31)):
 			print("Analogous Colors")
 			return True
@@ -220,6 +239,8 @@ def analogous_colors(colors):
 		else:
 			return False
 # The following code relies on the references below to apply color theory rules on the given colors
+# RapidTables Grey Color Code, RapidTables, https://www.rapidtables.com/web/color/gray-color.html, retrieved April 10, 2024 * 
+# RapidTables RGB Color Codes Chart, RapidTables, https://www.rapidtables.com/web/color/RGB_Color.html#:~:text=RGB%20color%20space%20or%20RGB,*256%3D16777216%20possible%20colors., retrieved April 10, 2024 * 
 # RGB Color Picker, Complementary Colors Generator, RGB Color Picker, https://rgbcolorpicker.com/complementary, retrieved April 10, 2024 *
 # sessions college (2008), The Sessions College Color Calculator, sessions college, https://www.sessions.edu/color-calculator/, retrieved April 12, 2024
 # Stoumann Mads (2021), Colors are Math: How they match - and how to build a Color Picker, DEV, https://dev.to/madsstoumann/colors-are-math-how-they-match-and-how-to-build-a-color-picker-4ei8, retrieved April 12, 2024
@@ -231,6 +252,7 @@ def triadic_colors(color1, color2, color3):
 	hue1 = convert_to_angle(color1[0])
 	hue2 = convert_to_angle(color2[0])
 	hue3 = convert_to_angle(color3[0])
+	# Comparing the angles
 	if hue2 in range(hue1 + 100, hue1 + 140) and hue3 in range(hue1 - 140, hue1 - 100):
 		print("Triadic Colors")
 		return True
@@ -251,8 +273,10 @@ def triadic_colors(color1, color2, color3):
 		return True
 	else:
 		return False
-# The following code relies on the references below to apply color theory rules on the given colors
+
 # RGB Color Picker, Complementary Colors Generator, RGB Color Picker, https://rgbcolorpicker.com/complementary, retrieved April 10, 2024 *
+# RapidTables Grey Color Code, RapidTables, https://www.rapidtables.com/web/color/gray-color.html, retrieved April 10, 2024 * 
+# RapidTables RGB Color Codes Chart, RapidTables, https://www.rapidtables.com/web/color/RGB_Color.html#:~:text=RGB%20color%20space%20or%20RGB,*256%3D16777216%20possible%20colors., retrieved April 10, 2024 * 
 # sessions college (2008), The Sessions College Color Calculator, sessions college, https://www.sessions.edu/color-calculator/, retrieved April 12, 2024
 # Stoumann Mads (2021), Colors are Math: How they match - and how to build a Color Picker, DEV, https://dev.to/madsstoumann/colors-are-math-how-they-match-and-how-to-build-a-color-picker-4ei8, retrieved April 12, 2024
 # W3Schools Color Schemes, W3Schools, https://www.w3schools.com/colors/colors_schemes.asp, retrieved April 10, 2024 *
@@ -265,12 +289,15 @@ def square_colors(color1, color2, color3, color4):
 	hue2 = convert_to_angle(hues[1])
 	hue3 = convert_to_angle(hues[2])
 	hue4 = convert_to_angle(hues[3])
+	# Comparing the angles
 	if hue2 in range(hue1 + 70, hue1 + 110) and hue3 in range(hue1 + 160, hue1 + 200) and hue4 in range(hue1 + 250, hue1 + 290):
 		print("Square Colors")
 		return True
 	else:
 		return False
 # The following code relies on the references below to apply color theory rules on the given colors
+# RapidTables Grey Color Code, RapidTables, https://www.rapidtables.com/web/color/gray-color.html, retrieved April 10, 2024 * 
+# RapidTables RGB Color Codes Chart, RapidTables, https://www.rapidtables.com/web/color/RGB_Color.html#:~:text=RGB%20color%20space%20or%20RGB,*256%3D16777216%20possible%20colors., retrieved April 10, 2024 * 
 # RGB Color Picker, Complementary Colors Generator, RGB Color Picker, https://rgbcolorpicker.com/complementary, retrieved April 10, 2024 *
 # sessions college (2008), The Sessions College Color Calculator, sessions college, https://www.sessions.edu/color-calculator/, retrieved April 12, 2024
 # Stoumann Mads (2021), Colors are Math: How they match - and how to build a Color Picker, DEV, https://dev.to/madsstoumann/colors-are-math-how-they-match-and-how-to-build-a-color-picker-4ei8, retrieved April 12, 2024
@@ -290,6 +317,8 @@ def tetradic_rectangle(color1, color2, color3, color4):
 	else:
 		return False
 # The following code relies on the references below to apply color theory rules on the given colors
+# RapidTables Grey Color Code, RapidTables, https://www.rapidtables.com/web/color/gray-color.html, retrieved April 10, 2024 * 
+# RapidTables RGB Color Codes Chart, RapidTables, https://www.rapidtables.com/web/color/RGB_Color.html#:~:text=RGB%20color%20space%20or%20RGB,*256%3D16777216%20possible%20colors., retrieved April 10, 2024 * 
 # RGB Color Picker, Complementary Colors Generator, RGB Color Picker, https://rgbcolorpicker.com/complementary, retrieved April 10, 2024 *
 # sessions college (2008), The Sessions College Color Calculator, sessions college, https://www.sessions.edu/color-calculator/, retrieved April 12, 2024
 # Stoumann Mads (2021), Colors are Math: How they match - and how to build a Color Picker, DEV, https://dev.to/madsstoumann/colors-are-math-how-they-match-and-how-to-build-a-color-picker-4ei8, retrieved April 12, 2024
@@ -307,6 +336,8 @@ def tints(colors):
 	print("Tints")
 	return True
 # The following code relies on the references below to apply color theory rules on the given colors
+# RapidTables Grey Color Code, RapidTables, https://www.rapidtables.com/web/color/gray-color.html, retrieved April 10, 2024 * 
+# RapidTables RGB Color Codes Chart, RapidTables, https://www.rapidtables.com/web/color/RGB_Color.html#:~:text=RGB%20color%20space%20or%20RGB,*256%3D16777216%20possible%20colors., retrieved April 10, 2024 * 
 # RGB Color Picker, Complementary Colors Generator, RGB Color Picker, https://rgbcolorpicker.com/complementary, retrieved April 10, 2024 *
 # sessions college (2008), The Sessions College Color Calculator, sessions college, https://www.sessions.edu/color-calculator/, retrieved April 12, 2024
 # Stoumann Mads (2021), Colors are Math: How they match - and how to build a Color Picker, DEV, https://dev.to/madsstoumann/colors-are-math-how-they-match-and-how-to-build-a-color-picker-4ei8, retrieved April 12, 2024
@@ -317,12 +348,15 @@ def tints(colors):
 def generate_complementary(color):
 	return [255 - color[0], 255 - color[1], 255 - color[2]]
 # The following code relies on the references below to apply color theory rules on the given colors
+# RapidTables Grey Color Code, RapidTables, https://www.rapidtables.com/web/color/gray-color.html, retrieved April 10, 2024 * 
+# RapidTables RGB Color Codes Chart, RapidTables, https://www.rapidtables.com/web/color/RGB_Color.html#:~:text=RGB%20color%20space%20or%20RGB,*256%3D16777216%20possible%20colors., retrieved April 10, 2024 * 
 # RGB Color Picker, Complementary Colors Generator, RGB Color Picker, https://rgbcolorpicker.com/complementary, retrieved April 10, 2024 *
 # sessions college (2008), The Sessions College Color Calculator, sessions college, https://www.sessions.edu/color-calculator/, retrieved April 12, 2024
 # Stoumann Mads (2021), Colors are Math: How they match - and how to build a Color Picker, DEV, https://dev.to/madsstoumann/colors-are-math-how-they-match-and-how-to-build-a-color-picker-4ei8, retrieved April 12, 2024
 # W3Schools Color Schemes, W3Schools, https://www.w3schools.com/colors/colors_schemes.asp, retrieved April 10, 2024 *
 # W3Schools Color Theory, W3Schools, https://www.w3schools.com/colors/colors_theory.asp, retrieved April 10, 2024 *
 # W3Schools Color Wheels, W3Schools, https://www.w3schools.com/colors/colors_wheels.asp, retrieved April 10, 2024 *
+# Uses generate_complementary and applies closest_color on the generated color to suggest new colors
 def suggest_colors(list_of_colors):
     red = [255, 0, 0, 'red']
     blue = [0, 0, 255, 'blue']
@@ -343,6 +377,8 @@ def suggest_colors(list_of_colors):
         recommended_color2 = closest_color(generate_complementary(list_of_colors[1]))
         return "Try " + str(recommended_color1[3]) + " instead of " + str(closest_color(list_of_colors[1])[3]) + " or " + str(recommended_color2[3]) + " instead of " + str(closest_color(list_of_colors[0])[3])
 # The following code relies on the references below to apply color theory rules on the given colors
+# RapidTables Grey Color Code, RapidTables, https://www.rapidtables.com/web/color/gray-color.html, retrieved April 10, 2024 * 
+# RapidTables RGB Color Codes Chart, RapidTables, https://www.rapidtables.com/web/color/RGB_Color.html#:~:text=RGB%20color%20space%20or%20RGB,*256%3D16777216%20possible%20colors., retrieved April 10, 2024 * 
 # RGB Color Picker, Complementary Colors Generator, RGB Color Picker, https://rgbcolorpicker.com/complementary, retrieved April 10, 2024 *
 # sessions college (2008), The Sessions College Color Calculator, sessions college, https://www.sessions.edu/color-calculator/, retrieved April 12, 2024
 # Stoumann Mads (2021), Colors are Math: How they match - and how to build a Color Picker, DEV, https://dev.to/madsstoumann/colors-are-math-how-they-match-and-how-to-build-a-color-picker-4ei8, retrieved April 12, 2024
