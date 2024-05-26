@@ -29,23 +29,32 @@ def send_msg_to_mirror(title: str, msg: str):
     #requests.get(url)
     print("results: \n" + msg)
     print("uncomment send_msg_to_mirror function with correct mirror IP to work with the mirror")
-
+# Function that goes over a list and returnns the most common element in it
 def most_common(l):
     list_of_tuples = []
     for i in l:
         list_of_tuples.append((i[0], i[1], i[2], i[3]))
+    # Creating a list of all the elements in the original list without duplicating them
     s = set(list_of_tuples)
     values = list(s)
+    # Dictionary to store the elements and their numbers 
     d = dict()
+    # Looping over the elements in the list
     for i in values:
         number = 0
         for j in list_of_tuples:
+            # If the element is found in the original list, number is incremented
             if i == j:
                 number += 1
+        # The dictionary updating with the element and its number
         d.update({number:i})
+    # Creating a new list from the previous dictionary
     list_with_values = list(d.items())
+    # Sorting the list
     list_with_values.sort()
+    # The list got sorted in ascending order, so it is reversed
     list_with_values.reverse()
+    # The first element of the reversed list is returned which is the most frequently occurring element in the original list
     return list_with_values[0][1]
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 torch.cuda.empty_cache()
