@@ -21,6 +21,9 @@ from weather import weather_clothing_advice
 mirrorIP = '192.168.130.195' #hotspot
 port = '8080'
 
+
+""" Send a message to the mirror given a title for the notification 
+and a msg that will be displayed as the content of the notification on the mirror"""
 def send_msg_to_mirror(title: str, msg: str):
     #url = 'http://'+mirrorIP+':'+port+'/remote?action=SHOW_ALERT&title='+title+'&message='+msg
     #requests.get(url)
@@ -55,7 +58,6 @@ yolo_modanet_params = {   "model_def" : "yolo/modanetcfg/yolov3-modanet.cfg",
 "nms_thres" :0.4,
 "img_size" : 416,
 "device" : device}
-
 
 
 yolo_params = yolo_modanet_params
@@ -155,7 +157,6 @@ while(True):
         suggested_colors = suggest_colors(rgb_colors)
         print(suggested_colors)
         
-
         if theme: send_msg_to_mirror("Outfit Evaluation", f"{suggested_colors} \n Your outfit is in a nice {theme} style! \n {weather_advice}")
         else:     send_msg_to_mirror("Outfit Evaluation", f"{suggested_colors} \n {weather_advice}")
 
