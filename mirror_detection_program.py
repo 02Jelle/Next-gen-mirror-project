@@ -3,7 +3,6 @@ import os
 import cv2
 from yolo.utils.utils import *
 from predictors.YOLOv3 import YOLOv3Predictor
-#from predictors.DetectronModels import Predictor
 import glob
 from tqdm import tqdm
 import sys
@@ -23,8 +22,10 @@ mirrorIP = '192.168.130.195' #hotspot
 port = '8080'
 
 def send_msg_to_mirror(title: str, msg: str):
-    url = 'http://'+mirrorIP+':'+port+'/remote?action=SHOW_ALERT&title='+title+'&message='+msg
-    requests.get(url)
+    #url = 'http://'+mirrorIP+':'+port+'/remote?action=SHOW_ALERT&title='+title+'&message='+msg
+    #requests.get(url)
+    print("results: \n" + msg)
+    print("uncomment send_msg_to_mirror function with correct mirror IP to work with the mirror")
 
 def most_common(l):
     list_of_tuples = []
@@ -158,54 +159,6 @@ while(True):
         if theme: send_msg_to_mirror("Outfit Evaluation", f"{suggested_colors} \n Your outfit is in a nice {theme} style! \n {weather_advice}")
         else:     send_msg_to_mirror("Outfit Evaluation", f"{suggested_colors} \n {weather_advice}")
 
-
-
-
-    #unique_labels = np.array(list(set([det[-1] for det in detections])))
-    #n_cls_preds = len(unique_labels)
-    #bbox_colors = colors[:n_cls_preds]
-
-    # if len(detections) != 0 :
-    #     detections.sort(reverse=False ,key = lambda x:x[4])
-    #     for x1, y1, x2, y2, cls_conf, cls_pred in detections:
-                
-    #             #feat_vec =detectron.compute_features_from_bbox(img,[(x1, y1, x2, y2)])
-    #             #feat_vec = detectron.extract_encoding_features(img)
-    #             #print(feat_vec)
-    #             #print(a.get_field('features')[0].shape)
-    #             print("\t+ Label: %s, Conf: %.5f" % (classes[int(cls_pred)], cls_conf))           
-    #             print(detections)
-                
-    #             color = bbox_colors[np.where(unique_labels == cls_pred)[0]][0]
-    #             color = colors[int(cls_pred)]
-                
-    #             color = tuple(c*255 for c in color)
-    #             color = (.7*color[2],.7*color[1],.7*color[0])       
-                    
-    #             font = cv2.FONT_HERSHEY_SIMPLEX   
-            
-            
-    #             x1, y1, x2, y2 = int(x1), int(y1), int(x2), int(y2)
-    #             text =  "%s conf: %.3f" % (classes[int(cls_pred)] ,cls_conf)
-                
-    #             cv2.rectangle(img,(x1,y1) , (x2,y2) , color,3)
-    #             y1 = 0 if y1<0 else y1
-    #             y1_rect = y1-25
-    #             y1_text = y1-5
-
-    #             if y1_rect<0:
-    #                 y1_rect = y1+27
-    #                 y1_text = y1+20
-    #             cv2.rectangle(img,(x1-2,y1_rect) , (x1 + int(8.5*len(text)),y1) , color,-1)
-    #             cv2.putText(img,text,(x1,y1_text), font, 0.5,(255,255,255),1,cv2.LINE_AA)
-                
-                
-
-                
-    #             cv2.imshow('Detections',img)
-    #             img_id = path.split('/')[-1].split('.')[0]
-    #             print(cv2.imwrite('output/ouput-test_{}_{}_{}.jpg'.format(img_id,model,dataset),img))
-    #             cv2.waitKey(0)
 
 # References
 # Lundh, F. and contributors, Clark A. J. and contributors (2024), ImageOps Module, Pillow (PIL Fork) 10.3.0 documentation, https://pillow.readthedocs.io/en/stable/reference/ImageOps.html, retrieved on April 18, 2024
