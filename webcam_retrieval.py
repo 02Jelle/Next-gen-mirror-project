@@ -53,6 +53,7 @@ cv2.namedWindow('Detections', cv2.WINDOW_NORMAL)
 #cv2.namedWindow('Retrieval', cv2.WINDOW_NORMAL)
 
 while(True):
+    # kpyopvision, supra56, berak (2020) error: (-215:Assertion failed) !_src.empty() in function 'cvtColor', OpenCV, https://answers.opencv.org/question/224322/error-215assertion-failed-_srcempty-in-function-cvtcolor/, retrieved April 18, 2024
     #img = cv2.imread('weon.jpg')
     _, frame = cap.read()
     img = frame.copy()
