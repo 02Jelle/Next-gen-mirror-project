@@ -1,6 +1,8 @@
 import requests
 api_key = "1b9be699604e82c1cc19a5158e44ccd9"
 
+
+#Get temperature/humidity/wind_speed with openweathermap API, with api_key and the city
 def get_weather(api_key, city):
     url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric"
     
@@ -12,6 +14,7 @@ def get_weather(api_key, city):
         humidity = data["main"]["humidity"]
         wind_speed = data["wind"]["speed"]
         
+        #return the 3 elements we need
         return temperature, humidity, wind_speed
     else:
         print(f"Erreur: {data['message']}")
@@ -28,12 +31,12 @@ def weather_feedback():
     else:
         return "good"
     
-    
+# Compare the results of get_weather() with the different clothes detected on the image and return a feedback based on the result
 def weather_clothing_advice(clothing_types):
     temperature, humidity, wind_speed = get_weather(api_key, "Ixelles")
     
     advice = ""
-
+    # Take different weather cases and different options of possible clothing types and give a feedback
     if temperature > 25 and humidity < 70 and wind_speed < 5:
         if any(item in clothing_types for item in [8.0, 5.0, 9.0, 10.0, 11.0]): #"top", "dress", "shorts", "skirt", "headwear"
             advice += "You're dressed well for the heat."

@@ -1,10 +1,11 @@
 from math import sqrt
 
+# Calculates the distance between two colors in RGB space
 def color_distance(color1, color2):
-  """Calculates the distance between two colors in RGB space."""
   return sqrt(sum((a - b) ** 2 for a, b in zip(color1, color2)))
 
 
+# Different theme on which we will base our code to detect outfits
 themes = {
   'Funeral': {
       'colors': [(0, 0, 0), (20, 20, 20)]  # Black and dark gray
@@ -29,6 +30,8 @@ themes = {
 # Distance to consider a color
 distance_threshold = 50
 
+
+# Give a point to a theme when the color is in the threshold.
 def determine_theme(colors):
   theme_scores = {theme: 0 for theme in themes}
   for color in colors:
@@ -38,7 +41,7 @@ def determine_theme(colors):
       if matches:
         theme_scores[theme] += 1
 
-
+  # Take the theme with the best score (closest to the outfit)
   best_theme, best_score = max(theme_scores.items(), key=lambda item: item[1])
   return best_theme if best_score > 1 else False
 
