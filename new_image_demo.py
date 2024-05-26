@@ -88,6 +88,7 @@ while(True):
             print('Img does not exists..')
             continue
         # Reads the saved image
+        # kpyopvision, supra56, berak (2020) error: (-215:Assertion failed) !_src.empty() in function 'cvtColor', OpenCV, https://answers.opencv.org/question/224322/error-215assertion-failed-_srcempty-in-function-cvtcolor/, retrieved April 18, 2024
         # Lundh, F. and contributors, Clark A. J. and contributors (2024), ImageOps Module, Pillow (PIL Fork) 10.3.0 documentation, https://pillow.readthedocs.io/en/stable/reference/ImageOps.html, retrieved on April 18, 2024
         # Lundh, F. and contributors, Clark A. J. and contributors (2024), ImagePalette Module, Pillow (PIL Fork) 10.3.0 documentation, https://pillow.readthedocs.io/en/stable/reference/ImagePalette.html, retrieved on April 18, 2024
         # Lundh, F. and contributors, Clark A. J. and contributors, (2024) pillow, Python Imaging Library (Fork), version 10.3.0, https://pypi.org/project/pillow/, retrieved on April 18, 2024
