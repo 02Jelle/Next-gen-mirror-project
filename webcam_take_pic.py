@@ -15,6 +15,8 @@
 # Tutorials Point OpenCV Python Tutorial, Tutorials Point, https://www.tutorialspoint.com/opencv_python/index.htm, retrieved on April 18, 2024
 # Tutorials Point OpenCV Python - Reading an Image, Tutorials Point, https://www.tutorialspoint.com/opencv_python/opencv_python_reading_image.htm, retrieved on April 18 2024
 # Tutorials Point OpenCV Python - Write an Image, Tutorials Point, https://www.tutorialspoint.com/opencv_python/opencv_python_write_image.htm, retrieved on April 18, 2024
+
+
 # The following is a simple code snippet that takes pictures using the webcam and stores them in the same folder as "capture.png"
 import cv2 as cv
 def take_pic():
