@@ -17,7 +17,7 @@ import requests
 from ThemesDetection import determine_theme
 from weather import weather_clothing_advice
 
-#mirrorIP = '192.168.3.30' #'192.168.130.195' #home
+#mirrorIP = '192.168.3.30' #home
 mirrorIP = '192.168.130.195' #hotspot
 port = '8080'
 
